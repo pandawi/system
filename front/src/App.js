@@ -7,13 +7,10 @@ import Items from './Items';
 function App() {
   return (
       <div className="App">
-        <header className="App-header">
-          <h1>Items and Users Dashboard</h1>
-        </header>
-        <main>
-          <Users />
-          <Items />
-        </main>
+          <main>
+              <h1>Items Dashboard:</h1>
+              <Items/>
+          </main>
       </div>
   );
 }

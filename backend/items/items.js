@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(cors());
 
 // Sample items data
 let items = [
@@ -15,7 +17,7 @@ let items = [
 app.get('/items', async (req, res) => {
     try {
         // Fetch user data from users server
-        const usersResponse = await axios.get('http://localhost:3002/users');
+        const usersResponse = await axios.get('http://users-service.default.svc.cluster.local:3002/users');
         const users = usersResponse.data;
 
         // Attach user information to items

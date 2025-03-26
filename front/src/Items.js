@@ -6,7 +6,7 @@ function Items() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        axios.get('http://items-service.default.svc.cluster.local:3001/api/items')
+        axios.get('http://localhost:3001/items')
             .then(response => {
                 setItems(response.data);
             })
@@ -16,12 +16,12 @@ function Items() {
     }, []);
 
     return (
-        <div>
-            <h2>Items</h2>
+        <div style={{ height: '50vh', overflowY: 'auto' }}>
+            <h2 style={{ fontSize: '1.5em' }}>Items</h2>
             <ul>
-                {items.map(item => (
+                {items.map((item) => (
                     <li key={item.id}>
-                        {item.name} (User: {item.user ? item.user.name : 'Unknown'})
+                        Item: {item.name} Seller: {item.sellerName}
                     </li>
                 ))}
             </ul>
