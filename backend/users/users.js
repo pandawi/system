@@ -11,12 +11,12 @@ let users = [
 ];
 
 // Endpoint to get users
-app.get('/api/users', (req, res) => {
+app.get('/users', (req, res) => {
     res.json(users);
 });
 
 // Endpoint to add a new user
-app.post('/api/users', (req, res) => {
+app.post('/users', (req, res) => {
     const { name } = req.body;
     const newUser = {
         id: users.length + 1,

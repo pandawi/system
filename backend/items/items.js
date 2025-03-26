@@ -7,21 +7,21 @@ app.use(express.json());
 
 // Sample items data
 let items = [
-    { id: 1, name: 'Item One', userId: 1 },
-    { id: 2, name: 'Item Two', userId: 2 },
+    { id: 1, name: 'Item One', sellerId: 1 },
+    { id: 2, name: 'Item Two', sellerId: 2 },
 ];
 
 // Endpoint to get items
-app.get('/api/items', async (req, res) => {
+app.get('/items', async (req, res) => {
     try {
         // Fetch user data from users server
-        const usersResponse = await axios.get('http://localhost:3002/api/users');
+        const usersResponse = await axios.get('http://localhost:3002/users');
         const users = usersResponse.data;
 
         // Attach user information to items
         const itemsWithUsers = items.map(item => ({
             ...item,
-            user: users.find(user => user.id === item.userId),
+            sellerName: users.find(user => user.id === item.id).name,
         }));
 
         res.json(itemsWithUsers);
@@ -36,7 +36,8 @@ app.post('/api/items', (req, res) => {
     const newItem = {
         id: items.length + 1,
         name,
-        userId,
+        price,
+        sellerId,
     };
     items.push(newItem);
     res.status(201).json(newItem);
